@@ -10,39 +10,40 @@ html, body {
     padding: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at bottom, #020111, #000);
+    background: radial-gradient(circle at top, #1b0036, #000);
     font-family: 'Segoe UI', sans-serif;
     overflow: hidden;
 }
 
-/* ESTRELLAS */
+/* ✨ ESTRELLAS */
 .star {
     position: absolute;
     width: 2px;
     height: 2px;
     background: white;
     border-radius: 50%;
-    opacity: 0.3;
+    opacity: 0.4;
+    box-shadow: 0 0 6px white;
     animation: twinkle 2s infinite alternate;
 }
 
 @keyframes twinkle {
-    from { opacity: 0.2; }
-    to { opacity: 1; }
+    from { opacity: 0.2; transform: scale(1); }
+    to { opacity: 1; transform: scale(1.6); }
 }
 
-/* SOBRE */
+/* 🌌 SOBRE */
 .envelope {
     position: absolute;
-    bottom: 18%;
+    bottom: 16%;
     left: 50%;
     transform: translateX(-50%);
     width: 380px;
     height: 220px;
-    background: #eaeaea;
-    border-radius: 14px;
+    background: linear-gradient(145deg, #f7f7f7, #ddd);
+    border-radius: 16px;
     cursor: pointer;
-    box-shadow: 0 25px 50px rgba(0,0,0,.5);
+    box-shadow: 0 25px 60px rgba(0,0,0,.6);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -54,38 +55,64 @@ html, body {
     color: #666;
 }
 
-/* CARTA */
+/* 💌 CARTA */
 .letter {
     position: absolute;
     top: 100%;
     left: 50%;
     transform: translateX(-50%);
-    width: 600px;
+    width: 620px;
     max-height: 70vh;
     background: white;
-    border-radius: 16px;
-    padding: 35px;
-    box-shadow: 0 30px 60px rgba(0,0,0,.45);
+    border-radius: 18px;
+    padding: 40px;
+    box-shadow: 0 35px 70px rgba(0,0,0,.55);
     overflow-y: auto;
-    transition: top 1.2s ease;
+    transition: top 1.3s ease;
     z-index: 3;
 }
 
 .letter.open {
-    top: 8%;
+    top: 6%;
 }
 
 .letter h1 {
-    margin: 0 0 20px;
+    margin: 0 0 25px;
     text-align: center;
-    font-size: 26px;
+    font-size: 28px;
 }
 
 .letter p {
-    font-size: 16px;
-    line-height: 1.8;
+    font-size: 17px;
+    line-height: 1.9;
     color: #444;
     text-align: justify;
+}
+
+/* 📱 MOBILE */
+@media (max-width: 768px) {
+
+    .envelope {
+        width: 260px;
+        height: 160px;
+        bottom: 10%;
+    }
+
+    .letter {
+        width: 92%;
+        max-height: 88vh;
+        padding: 25px;
+        border-radius: 14px;
+    }
+
+    .letter h1 {
+        font-size: 22px;
+    }
+
+    .letter p {
+        font-size: 16px;
+        line-height: 1.8;
+    }
 }
 </style>
 </head>
@@ -93,7 +120,7 @@ html, body {
 <body>
 
 <div class="envelope" id="openBtn">
-    <span>Haz click ✨</span>
+    <span>Toca para abrir ✨</span>
 </div>
 
 <div class="letter" id="letter">
@@ -121,8 +148,8 @@ document.getElementById("openBtn").addEventListener("click", () => {
     document.getElementById("letter").classList.toggle("open");
 });
 
-/* ESTRELLAS */
-for (let i = 0; i < 120; i++) {
+/* ESTRELLAS MÁGICAS */
+for (let i = 0; i < 140; i++) {
     const star = document.createElement("div");
     star.className = "star";
     star.style.top = Math.random() * 100 + "vh";
