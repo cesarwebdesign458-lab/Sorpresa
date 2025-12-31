@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>A mi hermanita</title>
+<title>Carta Estelar</title>
 
 <style>
 html, body {
@@ -31,10 +31,10 @@ html, body {
     to { opacity: 1; }
 }
 
-/* SOBRE */
+/* SOBRE (solo decorativo) */
 .envelope {
     position: absolute;
-    top: 50%;
+    top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 420px;
@@ -43,7 +43,7 @@ html, body {
     border-radius: 14px;
     cursor: pointer;
     box-shadow: 0 25px 50px rgba(0,0,0,.5);
-    overflow: hidden;
+    z-index: 2;
 }
 
 /* TAPA */
@@ -59,31 +59,33 @@ html, body {
     z-index: 3;
 }
 
-/* CARTA INTERIOR */
+/* CARTA REAL (FUERA DEL SOBRE) */
 .letter {
     position: absolute;
     top: 110%;
-    left: 5%;
-    width: 90%;
-    height: 380px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 520px;
+    max-height: 65vh;
     background: white;
-    border-radius: 12px;
-    padding: 25px;
-    box-shadow: 0 15px 30px rgba(0,0,0,.35);
+    border-radius: 14px;
+    padding: 30px;
+    box-shadow: 0 20px 40px rgba(0,0,0,.4);
     transition: top 1.2s ease;
-    z-index: 2;
+    z-index: 1;
     overflow-y: auto;
 }
 
+/* TEXTO */
 .letter h1 {
-    margin: 0 0 15px;
-    font-size: 24px;
+    margin: 0 0 20px;
+    font-size: 26px;
     text-align: center;
 }
 
 .letter p {
     font-size: 16px;
-    line-height: 1.6;
+    line-height: 1.7;
     color: #444;
     text-align: justify;
 }
@@ -93,8 +95,8 @@ html, body {
     transform: rotateX(180deg);
 }
 
-.envelope.open .letter {
-    top: 20px;
+.envelope.open + .letter {
+    top: 10%;
 }
 
 /* AYUDA */
@@ -114,40 +116,33 @@ html, body {
 
 <div class="envelope" id="envelope">
     <div class="flap"></div>
-    <div class="letter">
-        <h1>💌 Para ti</h1>
-        <p id="message">
-        Ha sido un año muy loco. Hemos vivido de todo: momentos buenos, momentos difíciles y experiencias que nos han marcado. De mi parte, pasé por muchos momentos duros, pero si hubo algo que me dio la fuerza para seguir adelante, fuiste tú. Gracias por cada palabra, por cada apoyo sincero y por esos pocos, pero valiosos momentos que compartimos juntos. Deseo de corazón que el próximo año nos regale muchos más momentos. No sabemos qué nos depara la vida, pero lo único que realmente me importa es que sigamos caminando juntos. Te quiero con toda mi alma, y soy inmensamente feliz sabiendo que tengo a una mujer tan especial como hermana. Te prometo que seguiré apoyándote siempre y sacándote una sonrisa todos los días del año, porque sé que tú siempre estarás ahí para mí. Eres una mujer increíble: fuerte, decidida, disciplinada y valiente. Te mereces lo mejor del mundo, y hoy ya puedes empezar a ver los frutos de todo tu esfuerzo. Aunque aún quede camino por recorrer, quiero que sepas que siempre estaré a tu lado para apoyarte, cuidarte y hacerte sonreír. Te amo con todo mi corazón, hermanita.
-        </p>
-    </div>
 </div>
 
-<div class="hint">Haz click en la carta ✨</div>
+<div class="letter" id="letter">
+    <h1>💌 Para ti</h1>
+    <p>
+Ha sido un año muy loco. Hemos vivido de todo: momentos buenos, momentos difíciles y experiencias que nos han marcado.
+
+De mi parte, pasé por muchos momentos duros, pero si hubo algo que me dio la fuerza para seguir adelante, fuiste tú. Gracias por cada palabra, por cada apoyo sincero y por esos pocos, pero valiosos momentos que compartimos juntos.
+
+Deseo de corazón que el próximo año nos regale muchos más momentos. No sabemos qué nos depara la vida, pero lo único que realmente me importa es que sigamos caminando juntos.
+
+Te quiero con toda mi alma, y soy inmensamente feliz sabiendo que tengo a una mujer tan especial como hermana.
+
+Te prometo que seguiré apoyándote siempre y sacándote una sonrisa todos los días del año, porque sé que tú siempre estarás ahí para mí.
+
+Eres una mujer increíble: fuerte, decidida, disciplinada y valiente. Te mereces lo mejor del mundo, y hoy ya puedes empezar a ver los frutos de todo tu esfuerzo.
+
+Te amo con todo mi corazón, hermanita.
+    </p>
+</div>
+
+<div class="hint">Haz click en el sobre ✨</div>
 
 <script>
-/* TEXTO DESDE URL */
-const params = new URLSearchParams(window.location.search);
-const msg = params.get("msg");
-if (msg) {
-    document.getElementById("message").textContent = decodeURIComponent(msg);
-}
-
 /* ABRIR CARTA */
 document.getElementById("envelope").addEventListener("click", function () {
     this.classList.toggle("open");
 });
 
-/* ESTRELLAS */
-const starsCount = 100;
-for (let i = 0; i < starsCount; i++) {
-    const star = document.createElement("div");
-    star.className = "star";
-    star.style.top = Math.random() * 100 + "vh";
-    star.style.left = Math.random() * 100 + "vw";
-    star.style.animationDuration = (Math.random() * 3 + 1) + "s";
-    document.body.appendChild(star);
-}
-</script>
-
-</body>
-</html>
+/
